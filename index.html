@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Grey+Qo&family=Pacifico&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Grey+Qo&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/31a740e3bb.js" crossorigin="anonymous"></script>
+    <title>Цветочная мастерская "Цвети"</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="#contacts" class="logo">Цвети</a>
+            <nav class="menu">
+                <a href="#shop-items" class="menu__item"> Каталог</a>
+                <a href="#contacts" class="menu__item"> Контакты</a>
+            </nav>
+            <div class="site-search">
+                <span>Поиск</i></span>
+                <input type="search" id="search-input">
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="filters">
+            <div class="filters-sort">
+                <label for="sort">Сортировать</label>
+                <select name="sort" id="sort">
+                  <option value="expensive"> сначала дорогие</option>
+                  <option value="cheap">сначала дешевые</option>
+                  <option value="filling">по наполнению</option>
+                 </select>
+            </div>
+            <div class="tag-filter">
+                <div class="tag-filter__content"></div>
+            </div>
+
+        </div>
+        <section id="shop-items">
+        </section>
+        <p id="nothing-found" class="nothing-found">Ничего не найдено</p>
+    </main>
+    <footer id="contacts" class="container">
+        <ul class="contacts">
+            <p class="contacts__info">Заказы на доставку принимаем круглосуточно:</p>
+            <li class="contacts__info"><a href="tel:+375298105552">+375 (29) 810-55-52</a></li>
+            <li class="contacts__info"><a href="mailto:flowers_for_you@mail.ru">flowers_for_you@mail.ru</a></li>
+        </ul>
+        <div class="social-networks">
+            <a href="https://www.facebook.com/" class="social-networks__link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://x.com/" class="social-networks__link"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" class="social-networks__link"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <template id="item-template">
+    <div class="shop-item">
+      <img src="">
+      <div class="content">
+        <h1></h1>
+        <p></p>
+      </div>
+      <div class="footer">
+        <span class="price"></span>
+        <div class="tags"></div>
+      </div>
+    </div>
+  </template>
+    <script src="script.js"></script>
+</body>
+
+</html>

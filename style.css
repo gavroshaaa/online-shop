@@ -1,0 +1,246 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    font-family: "Source Serif 4", Arial, sans-serif;
+    font-weight: 400;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0b4d75b;
+}
+
+a {
+    text-decoration: none;
+    color: #111;
+    transition: .7s;
+}
+
+.logo {
+    font-family: "Pacifico", "Source Serif 4", Arial, sans-serif;
+    text-align: left;
+    font-weight: 100;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+header {
+    background-color: #ec8cbc28;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px 10px 50px;
+}
+
+header nav .menu a:not(:last-child) {
+    padding-right: 40px;
+}
+
+a:hover {
+    color: #631043;
+    transform: scale(1.2);
+    font-weight: 500;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.site-search {
+    display: flex;
+}
+
+.site-search span {
+    margin-right: 10px;
+    align-self: flex-end;
+}
+
+.site-search input {
+    border: 1px solid #631043;
+    height: 30px;
+    border-radius: 4px;
+    padding-left: 5px;
+    margin-right: 10px;
+    font-family: "Source Serif 4", Arial, sans-serif;
+    font-size: 1rem;
+}
+
+select {
+    font-family: "Source Serif 4", Arial, sans-serif;
+    font-size: 1rem;
+}
+
+.tag-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choosen-filters {
+    font-size: 1rem;
+    background-color: #ee9bc528;
+    border: 1px solid #f1b0d481;
+    padding: 0 4px;
+}
+
+.btn-clean {
+    background-image: url('./images/xmark-solid.svg');
+    background-color: #ee9bc470;
+    border: 2px solid #f1b0d481;
+    width: 22px;
+    height: 22px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 4px;
+}
+
+#shop-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.shop-item {
+    width: calc((100% - 60px) / 3);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 2px solid #f1b0d4a6;
+    background-color: #f8eef365;
+    margin-bottom: 20px;
+}
+
+.shop-item:not(:nth-child(3n)) {
+    margin-right: 30px;
+}
+
+.shop-item .content {
+    padding: 10px 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.shop-item img {
+    width: 100%;
+    height: 300px;
+    flex-shrink: 3;
+    object-fit: cover;
+}
+
+.shop-item h1 {
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+.shop-item p {
+    margin-top: 10px;
+}
+
+.shop-item .price {
+    padding: 2px 6px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    display: block;
+    margin-top: auto;
+    border-bottom: 1px solid;
+}
+
+.shop-item .footer {
+    padding: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-item .tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    font-size: .8rem;
+    margin-bottom: 10px;
+}
+
+.shop-item .tag {
+    background-color: #ee9bc528;
+    border: 1px solid #f1b0d481;
+    padding: 2px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #ec8cbc28;
+}
+
+footer p {
+    font-family: "Pacifico", "Source Serif 4", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+#nothing-found {
+    color: #111;
+    position: absolute;
+    white-space: nowrap;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 500;
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.contacts__info {
+    margin-bottom: 5px;
+}
+
+.social-networks__link {
+    color: #262626;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    transition: 0.7s;
+}
+
+.social-networks__link:not(:last-child) {
+    margin-right: 40px;
+}
+
+.social-networks__link:hover {
+    transform: scale(1.2);
+}
