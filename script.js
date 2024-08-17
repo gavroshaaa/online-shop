@@ -179,11 +179,11 @@ function applySearch() {
     const searchString = searchInput.value.trim().toLowerCase();
 
     currentState = items.filter((el) =>
-        el.description.toLowerCase().includes(searchString) || el.tags.includes(searchString)
+        el.title.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString)
     );
     searchInput.value = '';
     renderItems(currentState);
-
+    sortControl.selectedIndex = 0;
 }
 
 searchInput.addEventListener("search", applySearch);
@@ -211,36 +211,30 @@ sortControl.addEventListener("change", (event) => {
     renderItems(currentState);
 });
 
-const searchTag = document.querySelectorAll(".tag");
 
-const choosenFilters = document.querySelector(".tag-filter__content");
-const choosenFilterWrapper = document.querySelector('.tag-filter');
+const choosenFilters = document.querySelector('.tag-filter');
 const btnForClear = document.createElement("button");
 btnForClear.classList.add("btn-clean");
-btnForClear.addEventListener('click', clearFilters);
 
-function clearFilters() {
-    choosenFilterWrapper.innerHTML = '';
-    itemsContainer.innerHTML = "";
-    items.forEach((item) => {
-        itemsContainer.append(prepareShopItem(item));
-    });
-    return itemsContainer;
-}
-
-function filterByTag() {
-    currentState = items.filter((el) =>
-        el.tags.includes(this.textContent)
-    );
-
-    choosenFilters.classList.add('choosen-filters');
-    choosenFilters.append(this.textContent);
-    choosenFilters.after(btnForClear);
+function cleanFilters() {
+    choosenFilters.innerHTML = '';
+    choosenFilters.classList.remove('choosen-filters');
+    btnForClear.remove();
+    currentState = [...items];
     renderItems(currentState);
-}
+    sortControl.selectedIndex = 0;
+    //  document.location.reload();
+};
 
-
-for (let tag of searchTag) {
-    tag.addEventListener('click', filterByTag);
-
-}
+const searchTag = document.querySelectorAll(".tag");
+searchTag.forEach(function(tag) {
+    tag.addEventListener('click', function() {
+        currentState = items.filter((el) => el.tags.includes(this.textContent));
+        choosenFilters.classList.add('choosen-filters');
+        choosenFilters.append(this.textContent);
+        choosenFilters.after(btnForClear);
+        renderItems(currentState);
+        sortControl.selectedIndex = 0;
+    });
+    btnForClear.addEventListener('click', cleanFilters);
+})
