@@ -82,13 +82,23 @@ select {
     font-size: 1rem;
 }
 
+select .hidden {
+    display: none
+}
+
+.tag-filter {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 24px;
+}
+
 .choosen-filters {
     font-size: 1rem;
     background-color: #ee9bc528;
     border: 1px solid #f1b0d481;
     padding: 0 4px;
-    position: absolute;
-    right: 24px;
+    margin-right: 4px;
 }
 
 .btn-clean {

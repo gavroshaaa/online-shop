@@ -54,7 +54,7 @@ const items = [{
 
     },
     {
-        title: "Порадуй любимую",
+        title: "Цветы в губке",
         description: "Композиция с цветами во флористической губке, что позволяет им сохранять свежесть долгое время!",
         tags: ["пионовидные розы", "эустома", "озотамнус", "эвкалипт"],
         price: 155,
@@ -78,7 +78,7 @@ const items = [{
 
     },
     {
-        title: "Твой шанс на успех!",
+        title: "Корзина шикарных цветов!",
         description: "Корзина цветов приведет в восторг с первой же секунды!",
         tags: ["пионовидные розы", "фрезия", "ранункулюсы", "эустома", "амариллис", "анемон", "скимия", "гениста", "эвкалипт"],
         price: 690,
@@ -110,7 +110,7 @@ const items = [{
 
     },
     {
-        title: "Подари весну",
+        title: "Букет тюльпанов",
         description: "Тюльпаны можно дарить не только на 8 марта!",
         tags: ["тюльпаны"],
         price: 104,
@@ -151,6 +151,20 @@ function sortByFilling(a, b) {
 
 renderItems(currentState);
 
+const choosenFilters = document.querySelector('.tag-filter');
+const btnForClear = document.createElement("button");
+btnForClear.classList.add("btn-clean");
+
+function cleanFilters() {
+    choosenFilters.innerHTML = '';
+    choosenFilters.classList.remove('choosen-filters');
+    btnForClear.remove();
+    currentState = [...items];
+    renderItems(currentState);
+    sortControl.selectedIndex = 0;
+};
+btnForClear.addEventListener('click', cleanFilters);
+
 function prepareShopItem(shopItem) {
 
     const { title, description, tags, img, price } = shopItem;
@@ -167,8 +181,18 @@ function prepareShopItem(shopItem) {
         element.textContent = tag;
         element.classList.add("tag");
         tagsHolder.append(element);
-    });
 
+        element.addEventListener('click', function() {
+            currentState = currentState.filter((el) => el.tags.includes(this.textContent));
+            let choosenFilter = document.createElement('span');
+            choosenFilter.textContent = this.textContent;
+            choosenFilter.classList.add('choosen-filters');
+            choosenFilters.append(choosenFilter);
+            choosenFilters.after(btnForClear);
+            renderItems(currentState);
+            sortControl.selectedIndex = 0;
+        });
+    });
     return item;
 }
 
@@ -212,29 +236,8 @@ sortControl.addEventListener("change", (event) => {
 });
 
 
-const choosenFilters = document.querySelector('.tag-filter');
-const btnForClear = document.createElement("button");
-btnForClear.classList.add("btn-clean");
 
-function cleanFilters() {
-    choosenFilters.innerHTML = '';
-    choosenFilters.classList.remove('choosen-filters');
-    btnForClear.remove();
-    currentState = [...items];
-    renderItems(currentState);
-    sortControl.selectedIndex = 0;
-    //  document.location.reload();
-};
-
-const searchTag = document.querySelectorAll(".tag");
-searchTag.forEach(function(tag) {
-    tag.addEventListener('click', function() {
-        currentState = items.filter((el) => el.tags.includes(this.textContent));
-        choosenFilters.classList.add('choosen-filters');
-        choosenFilters.append(this.textContent);
-        choosenFilters.after(btnForClear);
-        renderItems(currentState);
-        sortControl.selectedIndex = 0;
-    });
-    btnForClear.addEventListener('click', cleanFilters);
+const backToCatalog = document.querySelector('.menu__item');
+backToCatalog.addEventListener('click', function() {
+    document.location.reload();
 })
