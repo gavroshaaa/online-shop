@@ -54,7 +54,7 @@ const items = [{
 
     },
     {
-        title: "Порадуй любимую",
+        title: "Цветы в губке",
         description: "Композиция с цветами во флористической губке, что позволяет им сохранять свежесть долгое время!",
         tags: ["пионовидные розы", "эустома", "озотамнус", "эвкалипт"],
         price: 155,
@@ -78,7 +78,7 @@ const items = [{
 
     },
     {
-        title: "Твой шанс на успех!",
+        title: "Корзина шикарных цветов!",
         description: "Корзина цветов приведет в восторг с первой же секунды!",
         tags: ["пионовидные розы", "фрезия", "ранункулюсы", "эустома", "амариллис", "анемон", "скимия", "гениста", "эвкалипт"],
         price: 690,
@@ -110,7 +110,7 @@ const items = [{
 
     },
     {
-        title: "Подари весну",
+        title: "Букет тюльпанов",
         description: "Тюльпаны можно дарить не только на 8 марта!",
         tags: ["тюльпаны"],
         price: 104,
@@ -151,6 +151,20 @@ function sortByFilling(a, b) {
 
 renderItems(currentState);
 
+const choosenFilters = document.querySelector('.tag-filter');
+const btnForClear = document.createElement("button");
+btnForClear.classList.add("btn-clean");
+
+function cleanFilters() {
+    choosenFilters.innerHTML = '';
+    choosenFilters.classList.remove('choosen-filters');
+    btnForClear.remove();
+    currentState = [...items];
+    renderItems(currentState);
+    sortControl.selectedIndex = 0;
+};
+btnForClear.addEventListener('click', cleanFilters);
+
 function prepareShopItem(shopItem) {
 
     const { title, description, tags, img, price } = shopItem;
@@ -167,8 +181,18 @@ function prepareShopItem(shopItem) {
         element.textContent = tag;
         element.classList.add("tag");
         tagsHolder.append(element);
-    });
 
+        element.addEventListener('click', function() {
+            currentState = currentState.filter((el) => el.tags.includes(this.textContent));
+            const choosenFilter = document.createElement('span');
+            choosenFilter.textContent = this.textContent;
+            choosenFilter.classList.add('choosen-filters');
+            choosenFilters.append(choosenFilter);
+            choosenFilters.after(btnForClear);
+            renderItems(currentState);
+            sortControl.selectedIndex = 0;
+        });
+    });
     return item;
 }
 
@@ -179,11 +203,11 @@ function applySearch() {
     const searchString = searchInput.value.trim().toLowerCase();
 
     currentState = items.filter((el) =>
-        el.description.toLowerCase().includes(searchString) || el.tags.includes(searchString)
+        el.title.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString)
     );
-    searchInput.value = '';
-    renderItems(currentState);
 
+    renderItems(currentState);
+    sortControl.selectedIndex = 0;
 }
 
 searchInput.addEventListener("search", applySearch);
@@ -211,36 +235,9 @@ sortControl.addEventListener("change", (event) => {
     renderItems(currentState);
 });
 
-const searchTag = document.querySelectorAll(".tag");
-
-const choosenFilters = document.querySelector(".tag-filter__content");
-const choosenFilterWrapper = document.querySelector('.tag-filter');
-const btnForClear = document.createElement("button");
-btnForClear.classList.add("btn-clean");
-btnForClear.addEventListener('click', clearFilters);
-
-function clearFilters() {
-    choosenFilterWrapper.innerHTML = '';
-    itemsContainer.innerHTML = "";
-    items.forEach((item) => {
-        itemsContainer.append(prepareShopItem(item));
-    });
-    return itemsContainer;
-}
-
-function filterByTag() {
-    currentState = items.filter((el) =>
-        el.tags.includes(this.textContent)
-    );
-
-    choosenFilters.classList.add('choosen-filters');
-    choosenFilters.append(this.textContent);
-    choosenFilters.after(btnForClear);
-    renderItems(currentState);
-}
 
 
-for (let tag of searchTag) {
-    tag.addEventListener('click', filterByTag);
-
-}
+const backToCatalog = document.querySelector('.menu__item');
+backToCatalog.addEventListener('click', function() {
+    document.location.reload();
+})

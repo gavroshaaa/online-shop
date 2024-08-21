@@ -95,3 +95,59 @@ export const items = [{
         rating: 4.1,
     },
 ];
+
+
+const searchTag = document.querySelectorAll(".tag");
+
+const choosenFilters = document.querySelector(".tag-filter__content");
+const choosenFilterWrapper = document.querySelector('.tag-filter');
+const btnForClear = document.createElement("button");
+btnForClear.classList.add("btn-clean");
+btnForClear.addEventListener('click', function() {
+    choosenFilterWrapper.innerHTML = '';
+    itemsContainer.innerHTML = '';
+    items.forEach((item) => {
+        itemsContainer.append(prepareShopItem(item));
+    });
+    return itemsContainer;
+});
+
+function filterByTag() {
+    currentState = items.filter((el) =>
+        el.tags.includes(this.textContent)
+    );
+
+    choosenFilters.classList.add('choosen-filters');
+    choosenFilters.append(this.textContent);
+    choosenFilters.after(btnForClear);
+    renderItems(currentState);
+
+    sortControl.selectedIndex = 0;
+}
+
+
+for (let tag of searchTag) {
+    tag.addEventListener('click', filterByTag);
+}
+
+
+
+for (let tag of searchTag) {
+    tag.addEventListener('click', function() {
+        currentState = items.filter((el) => el.tags.includes(this.textContent));
+        console.log(tag);
+        choosenFilters.classList.add('choosen-filters');
+        choosenFilters.append(this.textContent);
+        choosenFilters.after(btnForClear);
+        btnForClear.addEventListener('click', function() {
+            choosenFilterWrapper.innerHTML = '';
+            itemsContainer.innerHTML = '';
+            currentState = [...items];
+            renderItems(currentState);
+            sortControl.selectedIndex = 0;
+            choosenFilters.classList.remove('choosen-filters');
+        });
+        renderItems(currentState);
+        sortControl.selectedIndex = 0;
+    });
+}

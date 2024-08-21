@@ -82,10 +82,15 @@ select {
     font-size: 1rem;
 }
 
+select .hidden {
+    display: none
+}
+
 .tag-filter {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    position: absolute;
+    right: 24px;
 }
 
 .choosen-filters {
@@ -93,6 +98,7 @@ select {
     background-color: #ee9bc528;
     border: 1px solid #f1b0d481;
     padding: 0 4px;
+    margin-right: 4px;
 }
 
 .btn-clean {
@@ -104,7 +110,6 @@ select {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    margin-left: 4px;
 }
 
 #shop-items {
@@ -142,7 +147,7 @@ select {
 .shop-item img {
     width: 100%;
     height: 300px;
-    flex-shrink: 3;
+    flex-shrink: 10;
     object-fit: cover;
 }
 
