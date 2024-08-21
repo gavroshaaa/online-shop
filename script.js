@@ -184,7 +184,7 @@ function prepareShopItem(shopItem) {
 
         element.addEventListener('click', function() {
             currentState = currentState.filter((el) => el.tags.includes(this.textContent));
-            let choosenFilter = document.createElement('span');
+            const choosenFilter = document.createElement('span');
             choosenFilter.textContent = this.textContent;
             choosenFilter.classList.add('choosen-filters');
             choosenFilters.append(choosenFilter);
@@ -205,7 +205,7 @@ function applySearch() {
     currentState = items.filter((el) =>
         el.title.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString)
     );
-    searchInput.value = '';
+
     renderItems(currentState);
     sortControl.selectedIndex = 0;
 }
